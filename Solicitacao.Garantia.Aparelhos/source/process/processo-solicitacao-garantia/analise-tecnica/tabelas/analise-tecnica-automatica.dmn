@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1n9ppqo" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="AnaliseAutomatica" name="Analise Técnica Automatica">
+    <decisionTable id="DecisionTable_0csw51h" hitPolicy="FIRST">
+      <input id="Input_1" label="Tipo defeito">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>beneficioSolicitado.infoAparelho.tipoDefeito</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Validação Automatica" name="validacaoAutomatica" typeRef="boolean" />
+      <rule id="DecisionRule_1vluiko">
+        <inputEntry id="UnaryTests_0w5t6em">
+          <text>"Não liga"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m5p3vq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02fpogg">
+        <inputEntry id="UnaryTests_134zk9t">
+          <text>"Tela preta"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qzdyyz">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fkhy5j">
+        <inputEntry id="UnaryTests_0q001zw">
+          <text>"Bateria descarregando rápido"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17oypgf">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m2ygnj">
+        <inputEntry id="UnaryTests_1441v0w">
+          <text>"Botões não funcionam"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ek0z79">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14np7jf">
+        <inputEntry id="UnaryTests_1isa9i3">
+          <text>"Ruído no alto-falante"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kifoor">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qofobi">
+        <inputEntry id="UnaryTests_1e4z1zp">
+          <text>"Sem sinal/Sem rede"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0rq8673">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qai49r">
+        <inputEntry id="UnaryTests_0nz3wwm">
+          <text>"Aparelho reiniciando sozinho"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ecsb52">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bg9rr3">
+        <inputEntry id="UnaryTests_0qnyizc">
+          <text>"Tela trincada"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19mopva">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04z2zyr">
+        <inputEntry id="UnaryTests_1onpklq">
+          <text>"Aparelho molhado"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bg2nxu">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18ybx1b">
+        <inputEntry id="UnaryTests_1w7yz2i">
+          <text>"Porta USB danificada"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fwkxd6">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0v30ckc">
+        <inputEntry id="UnaryTests_1re2dtt">
+          <text>"Trava com frequência"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ggz6og">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05mc6jb">
+        <inputEntry id="UnaryTests_1hg00aa">
+          <text>"Carregamento lento"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1guc47a">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wqwagi">
+        <inputEntry id="UnaryTests_0sjqz39">
+          <text>"Microfone não funciona"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k8i6nj">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01yhmr3">
+        <inputEntry id="UnaryTests_1bg6d3p">
+          <text>"Superaquecimento"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19a4uoh">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="AnaliseAutomatica">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

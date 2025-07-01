@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_15z2g8o" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="VerificaAparelhoElegivel" name="Verifica se Aparelho é Elegível">
+    <decisionTable id="DecisionTable_0wjm2ov">
+      <input id="Input_1" label="Prazo de garantia">
+        <inputExpression id="InputExpression_1" typeRef="boolean" expressionLanguage="feel">
+          <text>prazoGarantia</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ug0zgl" label="Nota Fiscal">
+        <inputExpression id="LiteralExpression_1tw48m0" typeRef="boolean">
+          <text>notaFiscal</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1ixvc0m" label="Elegivel">
+        <inputExpression id="LiteralExpression_09wdjzo" typeRef="boolean">
+          <text>elegivel</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Aparelho elegivel" name="aparelhoElegivel" typeRef="boolean" />
+      <rule id="DecisionRule_1srgqxe">
+        <inputEntry id="UnaryTests_1lmgtbm">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tod1ad">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m8bktp">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18hvix4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rulpxv">
+        <inputEntry id="UnaryTests_1w91av0">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xho5u5">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vrwz0s">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17y81sw">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sw1eg0">
+        <inputEntry id="UnaryTests_0ie6kz2">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gap63r">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fybyjp">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v4yoz4">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nf280d">
+        <inputEntry id="UnaryTests_1uondup">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x0vbu2">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0exivsg">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fpvha3">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="VerificaAparelhoElegivel">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
