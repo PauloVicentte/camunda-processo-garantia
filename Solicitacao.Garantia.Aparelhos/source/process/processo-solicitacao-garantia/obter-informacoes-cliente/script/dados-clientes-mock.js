@@ -1,52 +1,31 @@
 const listaClientes = [
   {
-    nome: "Alicia",
-    cpf: "123.456.789-10",
-    dataNascimento: "19/05/2002",
-    celular: {
-      ddd: "24",
-      numero: "98888-8888"
-    },
+    nome: "Antonio Silva",
+    cpf: "123.456.789-00",
+    dataNascimento: "15/05/1990",
+    celular: '(11) 99999-1111',
+    genero: 'Masculino',
     infoAparelho: [
       {
         marca: "Samsung",
         modelo: "Galaxy S21",
-        notaFiscal: "123.456.789",
-        dataCompra: "21/12/2024"
+        notaFiscal: "123456789",
+        dataCompra: "2024/12/21"
       }
     ]
   },
   {
-    nome: "Carlos",
-    cpf: "987.654.321-00",
-    dataNascimento: "17/05/2003",
-    celular: {
-      ddd: "21",
-      numero: "97777-7777"
-    },
+    nome: 'Maria Souza',
+    dataNascimento: '22/03/1985',
+    cpf: '987.654.321-00',
+    celular: '(21) 98888-2222',
+    genero: 'Feminino',
     infoAparelho: [
       {
         marca: "Apple",
         modelo: "iPhone 13",
-        notaFiscal: "321.654.987",
-        dataCompra: "19/05/2025"
-      }
-    ]
-  },
-  {
-    nome: "Fernanda",
-    cpf: "111.222.333-44",
-    dataNascimento: "10/02/2000",
-    celular: {
-      ddd: "11",
-      numero: "96666-6666"
-    },
-    infoAparelho: [
-      {
-        marca: "Motorola",
-        modelo: "Moto G82",
-        notaFiscal: "789.456.123",
-        dataCompra: "09/10/2023"
+        notaFiscal: "321654987",
+        dataCompra: "2025/05/19"
       }
     ]
   }

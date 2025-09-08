@@ -8,8 +8,7 @@ const dadosValidos =
   preenchido(beneficioSolicitado.nome) &&
   preenchido(beneficioSolicitado.cpf) &&
   preenchido(beneficioSolicitado.dataNascimento) &&
-  preenchido(beneficioSolicitado.celular?.ddd) &&
-  preenchido(beneficioSolicitado.celular?.numero) &&
+  preenchido(beneficioSolicitado.celular) &&
   preenchido(beneficioSolicitado.infoAparelho?.marca) &&
   preenchido(beneficioSolicitado.infoAparelho?.modelo) &&
   preenchido(beneficioSolicitado.infoAparelho?.notaFiscal) &&

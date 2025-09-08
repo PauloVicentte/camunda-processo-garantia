@@ -6,8 +6,7 @@ function compararCampos(clientes, valor) {
     clientes.nome === valor.nome &&
     clientes.cpf === valor.cpf &&
     clientes.dataNascimento === valor.dataNascimento &&
-    clientes.celular?.ddd === valor.celular?.ddd &&
-    clientes.celular?.numero === valor.celular?.numero
+    clientes.celular === valor.celular
   );
 }
 

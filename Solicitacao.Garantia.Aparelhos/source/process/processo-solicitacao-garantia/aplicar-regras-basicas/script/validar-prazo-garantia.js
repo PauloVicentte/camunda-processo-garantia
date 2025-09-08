@@ -1,15 +1,25 @@
 const beneficioSolicitado = JSON.parse(execution.getVariable("beneficioSolicitado"));
 const dataCompra = beneficioSolicitado.infoAparelho.dataCompra;
-const notaFiscal = beneficioSolicitado.infoAparelho.notaFiscal ? true : false;
+const notaFiscal = !!beneficioSolicitado.infoAparelho.notaFiscal;
+let dataCompraConvertida;
 
-const [dia, mes, ano] = dataCompra.split('/');
-const dataCompraConvertida = new Date(`${ano}-${mes}-${dia}`);
+if (dataCompra.includes('/')) {
+  const [dia, mes, ano] = dataCompra.split('/');
+  dataCompraConvertida = new Date(+ano, +mes - 1, +dia);
+}
+else if (dataCompra.includes('-')) {
+  const [ano, mes, dia] = dataCompra.split('-');
+  dataCompraConvertida = new Date(+ano, +mes - 1, +dia);
+}
 
 const dataAtual = new Date();
-const limiteGarantia = new Date();
-limiteGarantia.setMonth(limiteGarantia.getMonth() - 12);
 
-const dentroDoPrazo = dataCompraConvertida >= limiteGarantia;
+const diffMeses = 
+  (dataAtual.getFullYear() - dataCompraConvertida.getFullYear()) * 12 +
+  (dataAtual.getMonth() - dataCompraConvertida.getMonth());
+
+const dentroDoPrazo = diffMeses < 12 || 
+  (diffMeses === 12 && dataAtual.getDate() <= dataCompraConvertida.getDate());
 
 const elegivel = dentroDoPrazo && notaFiscal;
 

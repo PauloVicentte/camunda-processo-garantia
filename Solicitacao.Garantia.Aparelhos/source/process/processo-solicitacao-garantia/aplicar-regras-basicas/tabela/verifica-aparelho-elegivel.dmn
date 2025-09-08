@@ -17,7 +17,7 @@
           <text>elegivel</text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="Aparelho elegivel" name="aparelhoElegivel" typeRef="boolean" />
+      <output id="Output_1" label="Aparelho elegivel" name="aparelhoSemGarantia" typeRef="boolean" />
       <rule id="DecisionRule_1srgqxe">
         <inputEntry id="UnaryTests_1lmgtbm">
           <text>true</text>
@@ -71,6 +71,20 @@
           <text>false</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0fpvha3">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1l8rfdb">
+        <inputEntry id="UnaryTests_0f00foh">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cgq9ts">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zt2mtc">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gfrfzl">
           <text>false</text>
         </outputEntry>
       </rule>

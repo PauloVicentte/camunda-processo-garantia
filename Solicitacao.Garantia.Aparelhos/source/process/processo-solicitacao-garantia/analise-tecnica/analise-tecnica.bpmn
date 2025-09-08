@@ -27,53 +27,21 @@ execution.setVariable("garantiaAprovada", true);</bpmn:script>
     <bpmn:endEvent id="Event_1ft138s">
       <bpmn:incoming>Flow_0pfoud8</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="AnaliseTecnicaManual" name="Análise Técnica Manual." camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="descricaoProblema" label="Descrição" type="string">
-            <camunda:properties />
-            <camunda:validation />
-          </camunda:formField>
-          <camunda:formField id="tipoDefeito" label="Tipo de Defeito" type="string" />
-          <camunda:formField id="aprovacaoTecnica" label="Aprovado?" type="enum">
-            <camunda:properties />
-            <camunda:value id="Sim" name="Sim" />
-            <camunda:value id="Nao" name="Não" />
-          </camunda:formField>
-          <camunda:formField id="parecerTecnicoManual" label="Parecer Técnico" type="string">
-            <camunda:properties />
-            <camunda:validation />
-          </camunda:formField>
-        </camunda:formData>
-        <camunda:executionListener event="end">
-          <camunda:script scriptFormat="javascript">const aprovacaoManual = execution.getVariable("aprovacaoTecnica");
-
-if (aprovacaoManual == "Sim") {
-    execution.setVariable("garantiaAprovada", true);
-} else {
-    execution.setVariable("garantiaAprovada", false);
-}</camunda:script>
-        </camunda:executionListener>
-        <camunda:executionListener event="start">
-          <camunda:script scriptFormat="javascript">const beneficioSolicitado = JSON.parse(execution.getVariable("beneficioSolicitado"));
-const descricao = beneficioSolicitado.infoAparelho.descricao;
-const tipoDefeito = beneficioSolicitado.infoAparelho.tipoDefeito;
-
-execution.setVariable("descricaoProblema", descricao);
-execution.setVariable("tipoDefeito", tipoDefeito);</camunda:script>
-        </camunda:executionListener>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0ipj92l</bpmn:incoming>
-      <bpmn:outgoing>Flow_0pfoud8</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0s76ff7" sourceRef="Event_03tmos3" targetRef="AnaliseTecnicaAutomatica" />
     <bpmn:sequenceFlow id="Flow_1vjuxrz" sourceRef="AnaliseTecnicaAutomatica" targetRef="Gateway_06kvt1v" />
     <bpmn:sequenceFlow id="Flow_0ghrxg5" name="Sim" sourceRef="Gateway_06kvt1v" targetRef="ParecerAutomatico" />
-    <bpmn:sequenceFlow id="Flow_0ipj92l" name="Não" sourceRef="Gateway_06kvt1v" targetRef="AnaliseTecnicaManual">
+    <bpmn:sequenceFlow id="Flow_0ipj92l" name="Não" sourceRef="Gateway_06kvt1v" targetRef="NaoAprovado">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${validacaoAutomatica == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_18ybeha" sourceRef="ParecerAutomatico" targetRef="Event_00n3b45" />
-    <bpmn:sequenceFlow id="Flow_0pfoud8" sourceRef="AnaliseTecnicaManual" targetRef="Event_1ft138s" />
+    <bpmn:sequenceFlow id="Flow_0pfoud8" sourceRef="NaoAprovado" targetRef="Event_1ft138s" />
+    <bpmn:scriptTask id="NaoAprovado" name="Não foi aprovado" camunda:asyncBefore="true" camunda:asyncAfter="true" scriptFormat="javascript">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0ipj92l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pfoud8</bpmn:outgoing>
+      <bpmn:script>const garantiaAprovada = false;
+execution.setVariable("garantiaAprovada", garantiaAprovada);</bpmn:script>
+    </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="AnaliseTecnica">
@@ -100,7 +68,7 @@ execution.setVariable("tipoDefeito", tipoDefeito);</camunda:script>
       <bpmndi:BPMNShape id="Event_1ft138s_di" bpmnElement="Event_1ft138s">
         <dc:Bounds x="675" y="255" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0c7bxt6" bpmnElement="AnaliseTecnicaManual">
+      <bpmndi:BPMNShape id="Activity_10lxzsb_di" bpmnElement="NaoAprovado">
         <dc:Bounds x="533" y="233" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>

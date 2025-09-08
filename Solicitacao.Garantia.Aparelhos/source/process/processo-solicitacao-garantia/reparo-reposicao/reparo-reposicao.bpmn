@@ -1,195 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_11lfi71" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
-  <bpmn:process id="ReparoReposicao" name="Reparo ou Reposição" isExecutable="true">
+  <bpmn:process id="Reposicao" name="Reposição" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
-      <bpmn:extensionElements>
-        <camunda:executionListener event="start">
-          <camunda:script scriptFormat="javascript">const estoqueAparelhos = {
-  listaAparelhos: [
-    {
-      marca: "Samsung",
-      modelo: "Galaxy S21",
-      notaFiscal: "123.456.789",
-      dataCompra: "21/12/2024"
-    },
-    {
-      marca: "Apple",
-      modelo: "iPhone 13",
-      notaFiscal: "987.654.321",
-      dataCompra: "10/11/2024"
-    },
-    {
-      marca: "Motorola",
-      modelo: "Moto G100",
-      notaFiscal: "456.789.123",
-      dataCompra: "05/01/2025"
-    },
-    {
-      marca: "Xiaomi",
-      modelo: "Redmi Note 11",
-      notaFiscal: "321.654.987",
-      dataCompra: "30/10/2024"
-    },
-    {
-      marca: "LG",
-      modelo: "K62 Plus",
-      notaFiscal: "741.852.963",
-      dataCompra: "15/09/2024"
-    },
-    {
-      marca: "Asus",
-      modelo: "ROG Phone 5",
-      notaFiscal: "852.963.741",
-      dataCompra: "03/03/2025"
-    }
-  ]
-};
-
-execution.setVariable("estoqueAparelhos", JSON.stringify(estoqueAparelhos));</camunda:script>
-        </camunda:executionListener>
-      </bpmn:extensionElements>
+      <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0e9yf0x</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:endEvent id="Event_1t2obqz">
-      <bpmn:incoming>Flow_09ec0s4</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0e9yf0x" sourceRef="StartEvent_1" targetRef="EscolhaTipoAtendimentoCliente" />
-    <bpmn:sequenceFlow id="Flow_0xjhfxq" sourceRef="EscolhaTipoAtendimentoCliente" targetRef="Gateway" />
-    <bpmn:userTask id="EscolhaTipoAtendimentoCliente" name="Decisão do cliente para reparo ou troca" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="decisao" label="Deseja realizar o reparo ou troca?" type="enum">
-            <camunda:value id="Reparo" name="Reparo" />
-            <camunda:value id="Troca" name="Troca" />
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0e9yf0x</bpmn:incoming>
-      <bpmn:outgoing>Flow_0xjhfxq</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway" name="Escolha do Cliente" default="Reparo">
-      <bpmn:incoming>Flow_0xjhfxq</bpmn:incoming>
-      <bpmn:outgoing>Reparo</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1kxdo8f</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Reparo" name="Reparo" sourceRef="Gateway" targetRef="EncaminharAssistenciaTecnica" />
-    <bpmn:endEvent id="Event_1db3jl1">
-      <bpmn:incoming>Flow_18ss66e</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1kxdo8f" name="Troca" sourceRef="Gateway" targetRef="ObterMarcaModeloAparelho">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${decisao == "Troca"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0ouyijc" sourceRef="ObterMarcaModeloAparelho" targetRef="InformacoesFinaisSolicitacao1" />
+    <bpmn:sequenceFlow id="Flow_0e9yf0x" sourceRef="StartEvent_1" targetRef="ObterMarcaModeloAparelho" />
     <bpmn:scriptTask id="ObterMarcaModeloAparelho" name="Obter marca e modelo do aparelho" scriptFormat="javascript" camunda:resultVariable="mensagemEnvio" camunda:resource="deployment://obter-marca-modelo.js">
-      <bpmn:incoming>Flow_1kxdo8f</bpmn:incoming>
+      <bpmn:incoming>Flow_0e9yf0x</bpmn:incoming>
       <bpmn:outgoing>Flow_0ouyijc</bpmn:outgoing>
     </bpmn:scriptTask>
-    <bpmn:sequenceFlow id="Flow_1rdroub" sourceRef="EncaminharAssistenciaTecnica" targetRef="InformacoesFinaisSolicitacao" />
-    <bpmn:scriptTask id="EncaminharAssistenciaTecnica" name="Encaminhar  assistência técnica" scriptFormat="javascript">
-      <bpmn:incoming>Reparo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1rdroub</bpmn:outgoing>
-      <bpmn:script>const beneficioSolicitado = JSON.parse(execution.getVariable("beneficioSolicitado"));
-const marcaAparelho = beneficioSolicitado.infoAparelho.marca;
-const modeloAparelho = beneficioSolicitado.infoAparelho.modelo;
-
-execution.setVariable("envioParaAssistencia", true);
-execution.setVariable("mensagemAssistencia", `Aparelho enviado para assistência da ${marcaAparelho}.`);
-</bpmn:script>
-    </bpmn:scriptTask>
-    <bpmn:userTask id="InformacoesFinaisSolicitacao" name="Informações finais da solicitação" camunda:asyncAfter="true" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="mensagemAssistencia" label="Notificação" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1rdroub</bpmn:incoming>
-      <bpmn:outgoing>Flow_09ec0s4</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_09ec0s4" sourceRef="InformacoesFinaisSolicitacao" targetRef="Event_1t2obqz" />
-    <bpmn:userTask id="InformacoesFinaisSolicitacao1" name="Informações finais da solicitação" camunda:asyncAfter="true" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="mensagemEnvio" label="Notificação" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:sequenceFlow id="Flow_0ouyijc" sourceRef="ObterMarcaModeloAparelho" targetRef="Event_1db3jl1" />
+    <bpmn:endEvent id="Event_1db3jl1">
       <bpmn:incoming>Flow_0ouyijc</bpmn:incoming>
-      <bpmn:outgoing>Flow_18ss66e</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_18ss66e" sourceRef="InformacoesFinaisSolicitacao1" targetRef="Event_1db3jl1" />
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ReparoReposicao">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Reposicao">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="129" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1t2obqz_di" bpmnElement="Event_1t2obqz">
-        <dc:Bounds x="902" y="129" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0fa1dld_di" bpmnElement="EscolhaTipoAtendimentoCliente">
-        <dc:Bounds x="270" y="107" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0lq83z1_di" bpmnElement="Gateway" isMarkerVisible="true">
-        <dc:Bounds x="415" y="122" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="413" y="93" width="55" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1db3jl1_di" bpmnElement="Event_1db3jl1">
-        <dc:Bounds x="902" y="232" width="36" height="36" />
+        <dc:Bounds x="152" y="129" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1btwleg_di" bpmnElement="ObterMarcaModeloAparelho">
-        <dc:Bounds x="580" y="210" width="100" height="80" />
+        <dc:Bounds x="230" y="107" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_130hu67_di" bpmnElement="EncaminharAssistenciaTecnica">
-        <dc:Bounds x="580" y="107" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0x45k9m_di" bpmnElement="InformacoesFinaisSolicitacao">
-        <dc:Bounds x="760" y="107" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_17yt823" bpmnElement="InformacoesFinaisSolicitacao1">
-        <dc:Bounds x="760" y="210" width="100" height="80" />
-        <bpmndi:BPMNLabel />
+      <bpmndi:BPMNShape id="Event_1db3jl1_di" bpmnElement="Event_1db3jl1">
+        <dc:Bounds x="362" y="129" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0e9yf0x_di" bpmnElement="Flow_0e9yf0x">
-        <di:waypoint x="215" y="147" />
-        <di:waypoint x="270" y="147" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0xjhfxq_di" bpmnElement="Flow_0xjhfxq">
-        <di:waypoint x="370" y="147" />
-        <di:waypoint x="415" y="147" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1jiporj_di" bpmnElement="Reparo">
-        <di:waypoint x="465" y="147" />
-        <di:waypoint x="580" y="147" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="491" y="131" width="37" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1kxdo8f_di" bpmnElement="Flow_1kxdo8f">
-        <di:waypoint x="440" y="172" />
-        <di:waypoint x="440" y="250" />
-        <di:waypoint x="580" y="250" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="496" y="233" width="28" height="14" />
-        </bpmndi:BPMNLabel>
+        <di:waypoint x="188" y="147" />
+        <di:waypoint x="230" y="147" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ouyijc_di" bpmnElement="Flow_0ouyijc">
-        <di:waypoint x="680" y="250" />
-        <di:waypoint x="760" y="250" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1rdroub_di" bpmnElement="Flow_1rdroub">
-        <di:waypoint x="680" y="147" />
-        <di:waypoint x="760" y="147" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_09ec0s4_di" bpmnElement="Flow_09ec0s4">
-        <di:waypoint x="860" y="147" />
-        <di:waypoint x="902" y="147" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_18ss66e_di" bpmnElement="Flow_18ss66e">
-        <di:waypoint x="860" y="250" />
-        <di:waypoint x="902" y="250" />
+        <di:waypoint x="330" y="147" />
+        <di:waypoint x="362" y="147" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

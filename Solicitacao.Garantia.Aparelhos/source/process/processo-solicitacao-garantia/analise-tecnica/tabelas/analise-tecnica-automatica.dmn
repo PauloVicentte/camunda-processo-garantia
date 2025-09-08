@@ -56,14 +56,6 @@
           <text>true</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1qai49r">
-        <inputEntry id="UnaryTests_0nz3wwm">
-          <text>"Aparelho reiniciando sozinho"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1ecsb52">
-          <text>true</text>
-        </outputEntry>
-      </rule>
       <rule id="DecisionRule_0bg9rr3">
         <inputEntry id="UnaryTests_0qnyizc">
           <text>"Tela trincada"</text>
@@ -77,30 +69,6 @@
           <text>"Aparelho molhado"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0bg2nxu">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_18ybx1b">
-        <inputEntry id="UnaryTests_1w7yz2i">
-          <text>"Porta USB danificada"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0fwkxd6">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0v30ckc">
-        <inputEntry id="UnaryTests_1re2dtt">
-          <text>"Trava com frequência"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1ggz6og">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_05mc6jb">
-        <inputEntry id="UnaryTests_1hg00aa">
-          <text>"Carregamento lento"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1guc47a">
           <text>false</text>
         </outputEntry>
       </rule>
