@@ -2,7 +2,7 @@ const listaClientes = [
   {
     nome: "Antonio Silva",
     cpf: "123.456.789-00",
-    dataNascimento: "15/05/1990",
+    dataNascimento: "1990-05-15",
     celular: '(11) 99999-1111',
     genero: 'Masculino',
     infoAparelho: [
@@ -16,7 +16,7 @@ const listaClientes = [
   },
   {
     nome: 'Maria Souza',
-    dataNascimento: '22/03/1985',
+    dataNascimento: '1985-03-22',
     cpf: '987.654.321-00',
     celular: '(21) 98888-2222',
     genero: 'Feminino',

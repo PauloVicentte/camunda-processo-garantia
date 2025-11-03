@@ -7,8 +7,8 @@ if (!clientesStr) {
   const listaClientes = JSON.parse(clientesStr);
 
   const clienteEncontrado = listaClientes.find(cliente =>
-    cliente.nome === beneficioSolicitado.nome &&
-    cliente.cpf === beneficioSolicitado.cpf
+    cliente.nome === beneficioSolicitado.Nome &&
+    cliente.cpf === beneficioSolicitado.Cpf
   );
 
   const aparelho = clienteEncontrado?.infoAparelho?.[0];

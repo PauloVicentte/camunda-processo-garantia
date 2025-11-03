@@ -3,10 +3,10 @@ const clientes = JSON.parse(execution.getVariable("clientes"));
 
 function compararCampos(clientes, valor) {
   return (
-    clientes.nome === valor.nome &&
-    clientes.cpf === valor.cpf &&
-    clientes.dataNascimento === valor.dataNascimento &&
-    clientes.celular === valor.celular
+    clientes.nome === valor.Nome &&
+    clientes.cpf === valor.Cpf &&
+    clientes.dataNascimento === valor.DataNascimento &&
+    clientes.celular === valor.Celular
   );
 }
 

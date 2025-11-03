@@ -5,15 +5,15 @@ function preenchido(valor) {
 }
 
 const dadosValidos =
-  preenchido(beneficioSolicitado.nome) &&
-  preenchido(beneficioSolicitado.cpf) &&
-  preenchido(beneficioSolicitado.dataNascimento) &&
-  preenchido(beneficioSolicitado.celular) &&
-  preenchido(beneficioSolicitado.infoAparelho?.marca) &&
-  preenchido(beneficioSolicitado.infoAparelho?.modelo) &&
-  preenchido(beneficioSolicitado.infoAparelho?.notaFiscal) &&
-  preenchido(beneficioSolicitado.infoAparelho?.dataCompra) &&
-  preenchido(beneficioSolicitado.infoAparelho?.tipoDefeito) &&
-  preenchido(beneficioSolicitado.infoAparelho?.descricao);
+  preenchido(beneficioSolicitado.Nome) &&
+  preenchido(beneficioSolicitado.Cpf) &&
+  preenchido(beneficioSolicitado.DataNascimento) &&
+  preenchido(beneficioSolicitado.Celular) &&
+  preenchido(beneficioSolicitado.infoAparelho?.Marca) &&
+  preenchido(beneficioSolicitado.infoAparelho?.Modelo) &&
+  preenchido(beneficioSolicitado.infoAparelho?.NotaFiscal) &&
+  preenchido(beneficioSolicitado.infoAparelho?.DataCompra) &&
+  preenchido(beneficioSolicitado.infoAparelho?.TipoDefeito) &&
+  preenchido(beneficioSolicitado.infoAparelho?.Descricao);
 
 execution.setVariable('dadosValidos', dadosValidos);

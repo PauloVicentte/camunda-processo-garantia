@@ -1,6 +1,6 @@
 const beneficioSolicitado = JSON.parse(execution.getVariable("beneficioSolicitado"));
-const dataCompra = beneficioSolicitado.infoAparelho.dataCompra;
-const notaFiscal = !!beneficioSolicitado.infoAparelho.notaFiscal;
+const dataCompra = beneficioSolicitado.infoAparelho.DataCompra;
+const notaFiscal = !!beneficioSolicitado.infoAparelho.NotaFiscal;
 let dataCompraConvertida;
 
 if (dataCompra.includes('/')) {
